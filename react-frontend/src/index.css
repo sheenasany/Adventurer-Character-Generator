@@ -5,6 +5,8 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-image: url("https://webdesigndev.com/wp-content/uploads/2020/11/Old-Papyrus.jpg.webp");
+  background-size: cover;
 }
 
 
