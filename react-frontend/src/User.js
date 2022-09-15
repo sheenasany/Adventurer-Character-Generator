@@ -27,7 +27,10 @@ function User({ users, handleUsers }){
 
     const fetchingUserCharacters = (user) => {axios.get(`http://localhost:9292/users/${user}/characters`).then(resp => setCharacters(resp.data))}
     
+    // const updateUserName = axios.patch('https://localhost:9292/users/:id', { name: userName }.res.data.headers['Content-Type']).then(res => setUserName([...users, res.data]));
     
+
+
     function handleClick () {
             setUserRoute(userRoute => !userRoute)
     }
@@ -45,10 +48,12 @@ function User({ users, handleUsers }){
                 <input type="text" id="name" name="name" onChange={handleUserName} value={userName}/><br/>
                 <input type="submit" value="Submit"/>
             </form>
-           <h1>User things go Here!</h1>
-           <button onClick={handleClick}>{userRoute ? "Create Character": "Choose Character"}</button>
+           {userRoute?<h2> Adventurer! Choose Your Character! </h2>: <h2>Hark! Create Thy Champ! </h2>}
+           {userRoute? <h5>They will be displayed in resplendant mannor with all stats.</h5>: <h5>Enter your user, character name, and background, and your character will be auto-generated!</h5> }
+           <button onClick={handleClick}>{userRoute ? "Change to Character Creation" :"Switch to Character Selection"}</button>
            <br/>
            <select onChange={handleChange}>
+            <br/>
            <option>Select User</option>
            {userList}
            </select>
