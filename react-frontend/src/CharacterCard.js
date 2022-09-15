@@ -41,7 +41,8 @@ function CharacterCard({ selectedCharacter, setSelectedCharacter }){
     }
 
     return(
-        <div>
+        <div id="card">
+            <div id="info">
         <button onClick={handleDelete}>Delete Character</button>
         <button onClick={handleToggle}>Update Character</button>
         {toggleForm ? <form onSubmit={handleUpdateForm}> 
@@ -83,7 +84,8 @@ function CharacterCard({ selectedCharacter, setSelectedCharacter }){
         {template.ability2 ? <p>{template.ability2}</p> : null}
         {template.weapon1 ? <p>{template.weapon1}</p> : null}
         {template.weapon2 ? <p>{template.weapon2}</p> : null}
-        <img src={template.img_url} alt="Class Img"/>
+        </div>
+        <div id="image"><img src={template.img_url} alt="Class Img"/></div>
         </div>
     )
 }
