@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import axios from 'axios'
 import CharacterCreation from "./CharacterCreation";
 import CharacterList from "./CharacterList";
-import UserCard from "./UserCard";
 
 
 function User({ users, handleUsers }){
