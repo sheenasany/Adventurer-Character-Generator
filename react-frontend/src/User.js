@@ -48,8 +48,8 @@ function User({ users, handleUsers }){
                 <input type="text" id="name" name="name" onChange={handleUserName} value={userName}/><br/>
                 <input type="submit" value="Submit"/>
             </form>
-           {userRoute?<h2> Adventurer! Choose Your Character! </h2>: <h2>Hark! Create Thy Champ! </h2>}
-           {userRoute? <h5>They will be displayed in resplendant mannor with all stats.</h5>: <h5>Enter your user, character name, and background, and your character will be auto-generated!</h5> }
+           {userRoute?<h2>Hark! Create Thy Champ!</h2>: <h2>Adventurer! Choose Your Character!</h2>}
+           {userRoute? <h5>Enter your user, character name, and background, and your character will be auto-generated!</h5>: <h5>They will be displayed in resplendent manner with all stats.</h5> }
            <button onClick={handleClick}>{userRoute ?  "Switch to Character Selection" : "Change to Character Creation"}</button>
            <br/>
            <select onChange={handleChange}>
