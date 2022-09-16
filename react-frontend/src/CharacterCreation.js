@@ -84,7 +84,7 @@ function CharacterCreation({ user }){
                 {selectTemplate}
                 </select>
                 <br/>
-                <button>Submit</button>
+                <button class="fancy-btn">Submit</button>
                 </form>
         </div>
     )

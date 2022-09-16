@@ -10,7 +10,6 @@ function User({ users, handleUsers }){
     const [characters, setCharacters] = useState([])
     const [userName, setUserName] = useState("")
 
-    
 
     function activate (e) {
         e.preventDefault()
@@ -23,12 +22,8 @@ function User({ users, handleUsers }){
         setUser(e.target.value)
         fetchingUserCharacters(e.target.value)  
     }
-    
 
     const fetchingUserCharacters = (user) => {axios.get(`http://localhost:9292/users/${user}/characters`).then(resp => setCharacters(resp.data))}
-    
-    // const updateUserName = axios.patch('https://localhost:9292/users/:id', { name: userName }.res.data.headers['Content-Type']).then(res => setUserName([...users, res.data]));
-    
 
 
     function handleClick () {
@@ -46,11 +41,11 @@ function User({ users, handleUsers }){
             <form action="/action_page.php" onSubmit = {activate}>
                 <label htmlFor="name">Username:</label><br/>
                 <input type="text" id="name" name="name" onChange={handleUserName} value={userName}/><br/>
-                <input type="submit" value="Submit"/>
+                <input class="fancy-btn" type="submit" value="Submit"/>
             </form>
-           {userRoute?<h2>Hark! Create Thy Champ!</h2>: <h2>Adventurer! Choose Your Character!</h2>}
-           {userRoute? <h5>Enter your user, character name, and background, and your character will be auto-generated!</h5>: <h5>They will be displayed in resplendent manner with all stats.</h5> }
-           <button onClick={handleClick}>{userRoute ?  "Switch to Character Selection" : "Change to Character Creation"}</button>
+           {userRoute?<h2>Hark! Create Thy Champion!</h2>: <h2>Adventurer! Choose Your Character!</h2>}
+           {userRoute? <h5>Select your username. Enter a character name and background, and your character will be auto-generated!</h5>: <h5>View your created characters in all their resplendent glory with stats. Click on your character to delete or update them.</h5> }
+           <button class="fancy-btn" onClick={handleClick}>{userRoute ?  "Switch to Character Selection" : "Change to Character Creation"}</button>
            <br/>
            <select onChange={handleChange}>
             <br/>

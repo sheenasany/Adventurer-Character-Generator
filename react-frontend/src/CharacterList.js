@@ -1,12 +1,9 @@
 import CharacterCard from "./CharacterCard"
 import { useState } from 'react'
-import User from "./User"
 
 function CharacterList({ characters }) {
   const [selectedCharacter, setSelectedCharacter] = useState({})
   const [selectedCharacterState, setSelectedCharacterState] = useState(false)
-
-  
 
   const handleSelectedCharacter = (character) => {
     setSelectedCharacter(character)
@@ -14,7 +11,7 @@ function CharacterList({ characters }) {
   }
 
   const characterCard = characters.map(character => 
-      <button onClick={() => handleSelectedCharacter(character)} key={character.id}>{character.name}</button>)
+      <button class="fancy-btn" onClick={() => handleSelectedCharacter(character)} key={character.id}>{character.name}</button>)
 
   return(
     <div>

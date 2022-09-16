@@ -10,7 +10,7 @@ function CharacterCard({ selectedCharacter, setSelectedCharacter }){
     
     useEffect( () => {
         axios.get(`http://localhost:9292/templates/${selectedCharacter.template_id}`).then(response => setTemplate(response.data))
-    }, [])
+    })
 
 
     const handleDelete = () => {
@@ -43,8 +43,9 @@ function CharacterCard({ selectedCharacter, setSelectedCharacter }){
     return(
         <div id="card">
             <div id="info">
-        <button onClick={handleDelete}>Delete Character</button>
-        <button onClick={handleToggle}>Update Character</button>
+        <button class="fancy-btn" onClick={handleDelete}>Delete Character</button>
+        <button class="fancy-btn" onClick={handleToggle}>Update Character</button>
+        <br/>
         {toggleForm ? <form onSubmit={handleUpdateForm}> 
             <label>Update Your Character</label>
             <br/>
@@ -64,7 +65,7 @@ function CharacterCard({ selectedCharacter, setSelectedCharacter }){
                 onChange={handleUpdatedHistory}
             />
             <br/>
-            <button>Submit Update</button>
+            <button class="fancy-btn">Submit Update</button>
         </form> : null}
        <br/>
         <h1>{selectedCharacter.name}</h1>
@@ -78,12 +79,12 @@ function CharacterCard({ selectedCharacter, setSelectedCharacter }){
         <p>Intelligence: {template.intelligence}</p>
         <p>Wisdom: {template.wisdom}</p>
         <p>Charisma: {template.charisma}</p>
-        {template.spell1 ? <p>{template.spell1}</p> : null}
-        {template.spell2 ? <p>{template.spell2}</p> : null}
-        {template.ability1 ? <p>{template.ability1}</p> : null}
-        {template.ability2 ? <p>{template.ability2}</p> : null}
-        {template.weapon1 ? <p>{template.weapon1}</p> : null}
-        {template.weapon2 ? <p>{template.weapon2}</p> : null}
+        {template.spell1 ? <p>Spell: {template.spell1}</p> : null}
+        {template.spell2 ? <p>Spell: {template.spell2}</p> : null}
+        {template.ability1 ? <p>Ability: {template.ability1}</p> : null}
+        {template.ability2 ? <p>Ability: {template.ability2}</p> : null}
+        {template.weapon1 ? <p>Weapon: {template.weapon1}</p> : null}
+        {template.weapon2 ? <p>Weapon: {template.weapon2}</p> : null}
         </div>
         <div id="image"><img src={template.img_url} alt="Class Img"/></div>
         </div>
