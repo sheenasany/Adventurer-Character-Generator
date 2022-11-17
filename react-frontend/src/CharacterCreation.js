@@ -1,4 +1,5 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react'
+import axios from 'axios'
 
 function CharacterCreation({ user }){
     console.log(user)
@@ -11,18 +12,12 @@ function CharacterCreation({ user }){
 
 
     useEffect(() => {
-        fetch("http://localhost:9292/characters")
-            .then(res => res.json())
-            .then(data => {
-                setCharacters(data)
-            })
-    }, [])
+       axios.get("http://localhost:9292/characters")
+            .then(resp => setCharacters(resp.data))
 
-      useEffect(() => {
-      fetch("http://localhost:9292/templates/class_name")
-            .then(res => res.json())
-            .then(data => setTemplates(data))
-       }, [])
+        axios.get("http://localhost:9292/templates/class_name")
+            .then(resp => setTemplates(resp.data))
+    }, [])
 
     const addNewCharacter = (newCharacter) => {
         setCharacters([...characters, newCharacter])
@@ -31,20 +26,13 @@ function CharacterCreation({ user }){
 
     const handleForm = (e) => {
         e.preventDefault()
-        fetch("http://localhost:9292/characters", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
+        axios.post("http://localhost:9292/characters", {
                 name: name,
                 history: history,
                 user_id: user,
                 class_name: className,
             })
-        })
-            .then(res => res.json())
-            .then(data => addNewCharacter(data))
+            .then(resp => addNewCharacter(resp.data))
 
             setName("")
             setHistory("")
@@ -55,6 +43,8 @@ function CharacterCreation({ user }){
     const handleChange = (e) => {
         setClassName(e.target.value)
     }
+    console.log(templates)
+    
     const selectTemplate = templates.map(template => <option key={template.id}>{template}</option>)
 
     return(
