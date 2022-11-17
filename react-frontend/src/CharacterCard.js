@@ -86,7 +86,7 @@ function CharacterCard({ selectedCharacter, setSelectedCharacter }){
         {template.weapon1 ? <p>Weapon: {template.weapon1}</p> : null}
         {template.weapon2 ? <p>Weapon: {template.weapon2}</p> : null}
         </div>
-        <div id="image"><img src={template.img_url} alt="Class Img"/></div>
+        {template.img_url ? <div id="image"><img src={template.img_url} alt="Class Img"/></div> : null}
         </div>
     )
 }
