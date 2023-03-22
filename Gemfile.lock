@@ -24,6 +24,7 @@ GEM
     diff-lcs (1.4.4)
     eventmachine (1.2.7)
     ffi (1.15.3)
+    hirb (0.7.3)
     i18n (1.8.10)
       concurrent-ruby (~> 1.0)
     listen (3.5.1)
@@ -92,6 +93,7 @@ PLATFORMS
 DEPENDENCIES
   activerecord (~> 6.1)
   database_cleaner (~> 2.0)
+  hirb
   pry (~> 0.14.1)
   rack-contrib (~> 2.3)
   rack-cors (~> 1.1)

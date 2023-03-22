@@ -12,7 +12,7 @@ function CharacterCreation({ user }){
 
 
     useEffect(() => {
-       axios.get("http://localhost:9292/characters")
+    axios.get("http://localhost:9292/characters")
             .then(resp => setCharacters(resp.data))
 
         axios.get("http://localhost:9292/templates/class_name")

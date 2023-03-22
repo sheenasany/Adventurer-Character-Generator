@@ -8,9 +8,9 @@ function CharacterCard({ selectedCharacter, setSelectedCharacter }){
     const [toggleForm, setToggleForm] = useState(false)
 
     
-    useEffect( () => {
+    useEffect(() => {
         axios.get(`http://localhost:9292/templates/${selectedCharacter.template_id}`).then(response => setTemplate(response.data))
-    })
+    }, [])
 
 
     const handleDelete = () => {
@@ -67,7 +67,7 @@ function CharacterCard({ selectedCharacter, setSelectedCharacter }){
             <br/>
             <button class="fancy-btn">Submit Update</button>
         </form> : null}
-       <br/>
+        <br/>
         <h1>{selectedCharacter.name}</h1>
         <p>Race: {template.race}</p>
         <p>Level: {template.level}</p>
