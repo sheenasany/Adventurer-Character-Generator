@@ -4,7 +4,7 @@ import { useState } from 'react'
 function CharacterList({ characters }) {
   const [selectedCharacter, setSelectedCharacter] = useState({})
   const [selectedCharacterState, setSelectedCharacterState] = useState(false)
-  const [currentUser, setCurrentUser] = useState()
+  // const [currentUser, setCurrentUser] = useState()
   
   const characterCard = characters.map(character => 
       <button class="fancy-btn" onClick={() => handleSelectedCharacter(character)} key={character.id}>{character.name}</button>)
