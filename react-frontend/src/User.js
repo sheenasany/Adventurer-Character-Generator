@@ -83,7 +83,6 @@ function User({ users, handleUsers }){
         <option>Select User</option>
             {userList}
         </select>
-            {/* Leaving this here for you to say goodbye, Quade..*/}
             {/* {userRoute ? user !== "" ? <CharacterCreation user={user}/> : null : characters === null ? null : <CharacterList user={user} characters={characters}/>} */}
         {handleRendering()} 
         </div>
