@@ -62,8 +62,18 @@ function User({ users, handleUsers }){
                 <input class="fancy-btn" type="submit" value="Submit"/>
             </form>
 
-        {userRoute ? <h2>Hark! Create Thy Champion!</h2>: <h2>Adventurer! Choose Your Character!</h2>}
-        {userRoute ? <h5>Select your username. Enter a character name and background, and your character will be auto-generated!</h5>: <h5>View your created characters in all their resplendent glory with stats. Click on your character to delete or update them.</h5> }
+        {userRoute ? 
+            <div>
+                <h2>Hark! Create Thy Champion!</h2>
+                <h5>Select your username. Enter a character name and background, and your character will be auto-generated!</h5>
+            </div>
+        : 
+            <div>
+                <h2>Adventurer! Choose Your Character!</h2>
+                <h5>View your created characters in all their resplendent glory with stats. Click on your character to delete or update them.</h5>
+            </div>}
+            
+        {/* {userRoute ? <h5>Select your username. Enter a character name and background, and your character will be auto-generated!</h5>: <h5>View your created characters in all their resplendent glory with stats. Click on your character to delete or update them.</h5> } */}
         <button class="fancy-btn" value="creation" onClick={handleClick}>Character Creation</button>
         <button class="fancy-btn" value="selection" onClick={handleClick}>Character Selection</button>
         <br/>
