@@ -1,26 +1,45 @@
 import axios from 'axios'
 import { useState, useEffect } from 'react'
+import { useNavigate, useLocation } from 'react-router-dom'
 
-function CharacterCard({ selectedCharacter, setSelectedCharacter }){
+function CharacterCard({characters, handleCharacters}){
+    const navigate = useNavigate()
+    const location = useLocation()
+    const { character } = location.state
+    const [selectedCharacter, setSelectedCharacter] = useState(() => {
+        const savedCharacter = localStorage.getItem('selectedCharacter');
+        return savedCharacter ? JSON.parse(savedCharacter) : character;
+    });
     const [template, setTemplate] = useState({})
     const [updatedName, setUpdatedName] = useState("")
     const [updatedHistory, setUpdatedHistory] = useState("")
     const [toggleForm, setToggleForm] = useState(false)
 
-    
+    console.log(characters)
     useEffect(() => {
         axios.get(`http://localhost:9292/templates/${selectedCharacter.template_id}`).then(response => setTemplate(response.data))
-    }, [])
+
+        localStorage.setItem('selectedCharacter', JSON.stringify(selectedCharacter))
+    }, [selectedCharacter])
 
 
     const handleDelete = () => {
         axios.delete(`http://localhost:9292/characters/${selectedCharacter.id}`)
+            const updatedCharacters = characters.filter(character => character.id !== selectedCharacter.id)
+            handleCharacters(updatedCharacters)
+            localStorage.setItem('loadedCharacters', JSON.stringify(updatedCharacters))
+            navigate('/character_selection')
     }
 
     const handleUpdateForm = (e) => {
         e.preventDefault()
         axios.patch(`http://localhost:9292/characters/${selectedCharacter.id}`, {name: updatedName, history: updatedHistory})
-            .then(res => setSelectedCharacter(res.data))
+            .then(res => {setSelectedCharacter(res.data)
+                const updatedCharacters = characters.map(character => character.id === res.data.id ? res.data : character)
+                console.log(updatedCharacters)
+                handleCharacters(updatedCharacters)
+                localStorage.setItem('loadedCharacters', JSON.stringify(updatedCharacters))
+                })
             
             setUpdatedName("")
             setUpdatedHistory("")

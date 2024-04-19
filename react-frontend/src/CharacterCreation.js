@@ -1,35 +1,34 @@
 import { useState, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 
-function CharacterCreation({ user }){
-    console.log(user)
-
-    const [characters, setCharacters] = useState([])
+function CharacterCreation({ userId, characters, handleCharacters }){
     const [templates, setTemplates] = useState([])
     const [name, setName] = useState("")
     const [history, setHistory] = useState("")
     const [className, setClassName] = useState("Select A Class")
+    const navigate = useNavigate()
 
 
     useEffect(() => {
-    axios.get("http://localhost:9292/characters")
-            .then(resp => setCharacters(resp.data))
-
         axios.get("http://localhost:9292/templates/class_name")
             .then(resp => setTemplates(resp.data))
     }, [])
 
     const addNewCharacter = (newCharacter) => {
-        setCharacters([...characters, newCharacter])
+        handleCharacters([...characters, newCharacter])
+        localStorage.setItem('loadedCharacters', JSON.stringify([...characters, newCharacter]))
+        localStorage.removeItem('selectedCharacter')
+        navigate('/character_card', {state: { character : newCharacter}})
     }
 
 
     const handleForm = (e) => {
         e.preventDefault()
-        axios.post("http://localhost:9292/characters", {
+        axios.post("/characters", {
                 name: name,
                 history: history,
-                user_id: user,
+                user_id: userId,
                 class_name: className,
             })
             .then(resp => addNewCharacter(resp.data))
@@ -43,7 +42,6 @@ function CharacterCreation({ user }){
     const handleChange = (e) => {
         setClassName(e.target.value)
     }
-    console.log(templates)
     
     const selectTemplate = templates.map(template => <option key={template.id}>{template}</option>)
 
@@ -51,7 +49,8 @@ function CharacterCreation({ user }){
         <div className='form-box'>
             <br/>
             <form onSubmit={handleForm}>
-                <label>Create A New Character</label>
+                <label>Hark! Create Thy Champion!</label>
+                <h5>Enter a name, background and class for your character, and their stats will be auto-generated!</h5>
                 <br/>
                 <input
                     type="text"
@@ -64,7 +63,7 @@ function CharacterCreation({ user }){
                 <input
                     type='text'
                     name='history'
-                    placeholder='Character Background History'
+                    placeholder='Character Background'
                     value={history}
                     onChange={e => setHistory(e.target.value)}
                 />
